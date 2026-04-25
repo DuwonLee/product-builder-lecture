@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Tool Lucky App</title>
+    <title>Lucky App - Home</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,20 +24,21 @@
             <section class="tool-section">
                 <h2>Lotto Generator</h2>
                 <div id="lotto-numbers-container" class="lotto-numbers"></div>
-                <button id="generate-btn">
+                <button id="generate-btn" class="submit-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     <span>Generate Numbers</span>
                 </button>
             </section>
 
-            <!-- Animal Face Test Section -->
+            <!-- Navigation to Animal Face Test -->
             <section class="tool-section">
                 <hr>
                 <h2>Animal Face Test</h2>
-                <p>Dog or Cat? Check your face type!</p>
-                <div id="webcam-container"></div>
-                <div id="label-container"></div>
-                <button type="button" id="start-test-btn" class="submit-btn">Start Test</button>
+                <p>Curious about your animal face type?</p>
+                <a href="animal-test.html" class="submit-btn nav-btn">
+                    <span>Go to Animal Face Test</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
             </section>
 
             <!-- Partnership Section -->
