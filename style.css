@@ -6,6 +6,8 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --btn-bg: #4CAF50;
     --btn-hover: #45a049;
+    --input-bg: #ffffff;
+    --input-border: #dddddd;
 }
 
 [data-theme="dark"] {
@@ -16,6 +18,8 @@
     --shadow-color: rgba(0, 0, 0, 0.3);
     --btn-bg: #3d8c40;
     --btn-hover: #357a38;
+    --input-bg: #3d3d3d;
+    --input-border: #444444;
 }
 
 body {
@@ -25,8 +29,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 20px 0;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -100,9 +105,72 @@ p {
     align-items: center;
     gap: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
 }
 
 #generate-btn:hover {
     background-color: var(--btn-hover);
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.partnership-section {
+    margin-top: 40px;
+}
+
+.partnership-section hr {
+    border: none;
+    border-top: 1px solid var(--input-border);
+    margin-bottom: 30px;
+}
+
+.partnership-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--btn-bg);
+}
+
+.submit-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+[data-theme="dark"] .submit-btn {
+    background-color: #555;
+}
+
+.submit-btn:hover {
+    opacity: 0.8;
 }
