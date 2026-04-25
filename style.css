@@ -171,6 +171,23 @@ p {
     background-color: #555;
 }
 
-.submit-btn:hover {
-    opacity: 0.8;
+.comments-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.comments-section hr {
+    border: none;
+    border-top: 1px solid var(--input-border);
+    margin-bottom: 30px;
+}
+
+.comments-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#disqus_thread {
+    width: 100%;
 }
