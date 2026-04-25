@@ -26,14 +26,15 @@ p {
     margin-bottom: 30px;
 }
 
-#lotto-balls {
+#lotto-numbers-container {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
-#generator-btn {
+#generate-btn {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -49,7 +50,7 @@ p {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-#generator-btn:hover {
+#generate-btn:hover {
     background-color: #45a049;
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }

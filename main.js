@@ -11,17 +11,18 @@ class LottoBall extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 .ball {
-                    width: 100px;
-                    height: 100px;
+                    width: 60px;
+                    height: 60px;
                     border-radius: 50%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    font-size: 2em;
+                    font-size: 1.5em;
                     font-weight: bold;
                     color: white;
                     background-color: ${color};
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
                 }
             </style>
             <div class="ball">${number}</div>
@@ -32,8 +33,10 @@ class LottoBall extends HTMLElement {
 customElements.define('lotto-ball', LottoBall);
 
 
-document.getElementById('generator-btn').addEventListener('click', () => {
-    const lottoBallsContainer = document.getElementById('lotto-balls');
+document.getElementById('generate-btn').addEventListener('click', () => {
+    const lottoBallsContainer = document.getElementById('lotto-numbers-container');
+    if (!lottoBallsContainer) return;
+    
     lottoBallsContainer.innerHTML = ''; 
     const numbers = new Set();
 
@@ -46,16 +49,15 @@ document.getElementById('generator-btn').addEventListener('click', () => {
     sortedNumbers.forEach(number => {
         const lottoBall = document.createElement('lotto-ball');
         lottoBall.setAttribute('number', number);
-        lottoBall.setAttribute('color', getRandomColor());
+        lottoBall.setAttribute('color', getLottoColor(number));
         lottoBallsContainer.appendChild(lottoBall);
     });
 });
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+function getLottoColor(number) {
+    if (number <= 10) return '#fbc400'; // Yellow
+    if (number <= 20) return '#69c8f2'; // Blue
+    if (number <= 30) return '#ff7272'; // Red
+    if (number <= 40) return '#aaa';    // Gray
+    return '#b0d840';                   // Green
 }
