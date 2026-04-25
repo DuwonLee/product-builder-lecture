@@ -63,72 +63,64 @@ function getLottoColor(number) {
     return '#b0d840';                   // Green
 }
 
-// Animal Face Test (Teachable Machine)
+// Animal Face Test (Image Upload)
 const TM_URL = "https://teachablemachine.withgoogle.com/models/BI_S9XiVT/";
-let tmModel, webcam, labelContainer, maxPredictions;
+let tmModel, labelContainer, maxPredictions;
 
-async function initTM() {
+async function loadModel() {
+    if (tmModel) return;
     const modelURL = TM_URL + "model.json";
     const metadataURL = TM_URL + "metadata.json";
-
     tmModel = await tmImage.load(modelURL, metadataURL);
     maxPredictions = tmModel.getTotalClasses();
+}
 
-    const flip = true; 
-    webcam = new tmImage.Webcam(300, 300, flip); 
-    await webcam.setup(); 
-    await webcam.play();
-    window.requestAnimationFrame(loopTM);
+const imageUpload = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+const uploadLabel = document.querySelector('.upload-label');
+const loadingSpinner = document.getElementById('loading-spinner');
 
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
+imageUpload?.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = 'block';
+        uploadLabel.style.display = 'none';
+        
+        loadingSpinner.style.display = 'block';
+        await predictImage(imagePreview);
+        loadingSpinner.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+});
+
+async function predictImage(imageElement) {
+    await loadModel();
+    
     labelContainer = document.getElementById("label-container");
-    labelContainer.innerHTML = ''; // Clear previous labels
-    for (let i = 0; i < maxPredictions; i++) {
-        const labelDiv = document.createElement("div");
-        labelDiv.className = "prediction-bar-container";
-        labelDiv.innerHTML = `
-            <span class="label-name"></span>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 0%"></div>
-            </div>
-            <span class="label-prob">0%</span>
-        `;
-        labelContainer.appendChild(labelDiv);
-    }
-}
+    labelContainer.innerHTML = ''; 
 
-async function loopTM() {
-    webcam.update(); 
-    await predictTM();
-    window.requestAnimationFrame(loopTM);
-}
-
-async function predictTM() {
-    const prediction = await tmModel.predict(webcam.canvas);
+    const prediction = await tmModel.predict(imageElement);
+    
     for (let i = 0; i < maxPredictions; i++) {
         const className = prediction[i].className;
         const probability = (prediction[i].probability * 100).toFixed(0);
         
-        const container = labelContainer.childNodes[i];
-        container.querySelector('.label-name').innerText = className;
-        container.querySelector('.progress-fill').style.width = probability + "%";
-        container.querySelector('.label-prob').innerText = probability + "%";
-        
-        // Highlight the highest probability
-        if (prediction[i].probability > 0.5) {
-            container.querySelector('.progress-fill').style.backgroundColor = getLottoColor(i * 10 + 5); 
-        } else {
-            container.querySelector('.progress-fill').style.backgroundColor = '#ccc';
-        }
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "prediction-bar-container";
+        labelDiv.innerHTML = `
+            <span class="label-name">${className}</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${probability}%; background-color: ${prediction[i].probability > 0.5 ? getLottoColor(i * 10 + 5) : '#ccc'}"></div>
+            </div>
+            <span class="label-prob">${probability}%</span>
+        `;
+        labelContainer.appendChild(labelDiv);
     }
 }
-
-document.getElementById('start-test-btn')?.addEventListener('click', async (e) => {
-    e.target.disabled = true;
-    e.target.innerText = "Loading Model...";
-    await initTM();
-    e.target.style.display = "none";
-});
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
@@ -147,6 +139,7 @@ themeToggle?.addEventListener('click', () => {
 });
 
 function updateThemeIcons(theme) {
+    if (!sunIcon || !moonIcon) return;
     if (theme === 'dark') {
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
