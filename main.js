@@ -33,6 +33,7 @@ class LottoBall extends HTMLElement {
 customElements.define('lotto-ball', LottoBall);
 
 
+// Lotto Number Generation
 document.getElementById('generate-btn').addEventListener('click', () => {
     const lottoBallsContainer = document.getElementById('lotto-numbers-container');
     if (!lottoBallsContainer) return;
@@ -60,4 +61,30 @@ function getLottoColor(number) {
     if (number <= 30) return '#ff7272'; // Red
     if (number <= 40) return '#aaa';    // Gray
     return '#b0d840';                   // Green
+}
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const sunIcon = document.getElementById('sun-icon');
+const moonIcon = document.getElementById('moon-icon');
+
+const currentTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', currentTheme);
+updateThemeIcons(currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeIcons(theme);
+});
+
+function updateThemeIcons(theme) {
+    if (theme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    }
 }
