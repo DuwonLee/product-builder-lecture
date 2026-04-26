@@ -330,3 +330,70 @@ h2 { font-size: 1.5em; margin-bottom: 20px; }
         width: 95%;
     }
 }
+
+/* Share Section */
+.share-section {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: none; /* Show only when results are ready */
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    border: none;
+    font-family: inherit;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+}
+
+.share-btn.twitter {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+.share-btn.kakao {
+    background-color: #FEE500;
+    color: #3C1E1E;
+}
+
+.share-btn.copy {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+@media (max-width: 768px) {
+    .share-buttons {
+        flex-direction: column;
+    }
+    .share-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
