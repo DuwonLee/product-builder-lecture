@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-domain.com/index.html</loc>
+    <loc>https://product-builder-lecture-3e1.pages.dev/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/animal-test.html</loc>
+    <loc>https://product-builder-lecture-3e1.pages.dev/animal-test.html</loc>
     <lastmod>2026-04-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/about.html</loc>
+    <loc>https://product-builder-lecture-3e1.pages.dev/about.html</loc>
     <lastmod>2026-04-26</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/privacy.html</loc>
+    <loc>https://product-builder-lecture-3e1.pages.dev/privacy.html</loc>
     <lastmod>2026-04-26</lastmod>
     <priority>0.3</priority>
   </url>
