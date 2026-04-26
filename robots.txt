@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Bing
+User-agent: bingbot
+Allow: /
+
+# Daum
+User-agent: Daumoa
+Allow: /
+
 Sitemap: https://product-builder-lecture-3e1.pages.dev/sitemap.xml
