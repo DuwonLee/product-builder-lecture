@@ -19,8 +19,9 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky App - Animal Face Test</title>
-    <meta name="description" content="Discover your animal face type with our advanced AI model. Upload a photo and let our Machine Learning algorithm analyze your features.">
+    <title>AI Animal Face Test - Discover Your Animal Double | Lucky App</title>
+    <meta name="description" content="Discover your animal face type with our advanced AI model. Upload a photo and let our Machine Learning algorithm analyze your features to find your animal twin.">
+    <link rel="canonical" href="https://your-domain.com/animal-test.html">
     <meta name="google-adsense-account" content="ca-pub-4203578430730822">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -29,18 +30,32 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4203578430730822"
      crossorigin="anonymous"></script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Lucky App Animal Face Test",
+      "url": "https://your-domain.com/animal-test.html",
+      "description": "An AI-powered tool that analyzes facial features to match users with their animal face type.",
+      "applicationCategory": "Entertainment",
+      "browserRequirements": "Requires modern browser with JavaScript enabled",
+      "softwareVersion": "1.0"
+    }
+    </script>
 </head>
 <body>
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">Lucky App</a>
+            <a href="index.html" class="nav-logo" aria-label="Lucky App Home">Lucky App</a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="animal-test.html">Animal Test</a>
                 <a href="about.html">About</a>
                 <button id="theme-toggle" aria-label="Toggle dark mode">
-                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="display:none;" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </button>
             </div>
         </div>
@@ -49,16 +64,16 @@
     <div class="container">
         <header>
             <div class="header-top">
-                <a href="index.html" class="back-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <a href="index.html" class="back-link" aria-label="Go back to Home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 </a>
-                <h1>Animal Face Test</h1>
+                <h1>AI Animal Face Test</h1>
             </div>
-            <p>What does your face say about your animal double?</p>
+            <p>What does your face say about your animal double? Find out with AI.</p>
         </header>
         
         <main>
-            <section class="tool-section">
+            <article class="tool-section">
                 <div class="tool-description">
                     <p>Our Animal Face Test uses Artificial Intelligence (AI) to recognize patterns and features in your photo, matching them with known animal characteristics. This model has been trained on thousands of images to provide a fun and surprisingly accurate reflection of your "animal type".</p>
                 </div>
@@ -66,37 +81,37 @@
                 <div class="upload-container" id="upload-area">
                     <input type="file" id="image-upload" accept="image/*" hidden>
                     <label for="image-upload" class="upload-label">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                        <span>Click or Drag photo here</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        <span>Click or Drag photo here to start AI analysis</span>
                     </label>
-                    <img id="image-preview" src="" alt="Your Photo" style="display: none;">
+                    <img id="image-preview" src="" alt="Your uploaded photo for AI analysis" style="display: none;">
                 </div>
 
-                <div id="label-container"></div>
+                <div id="label-container" aria-live="polite"></div>
                 
                 <div id="loading-spinner" style="display: none;">
-                    <p>AI is analyzing your features...</p>
+                    <p>AI is analyzing your features... please wait.</p>
                 </div>
 
                 <div class="tool-description">
-                    <h3>How it works:</h3>
+                    <h3>How the AI Test Works:</h3>
                     <ul>
                         <li>We use <strong>Teachable Machine</strong>, a Google platform for creating Machine Learning models.</li>
-                        <li>Your photo is processed locally in your browser; it is never uploaded to our servers.</li>
+                        <li>Your photo is processed locally in your browser; it is never uploaded to our servers, ensuring your privacy.</li>
                         <li>The model identifies features like eye shape, jawline, and proportions to calculate probabilities.</li>
                     </ul>
                 </div>
-            </section>
+            </article>
         </main>
     </div>
 
     <footer class="main-footer">
         <div class="footer-container">
             <p>&copy; 2026 Lucky App. All rights reserved.</p>
-            <div class="footer-links">
+            <nav class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="about.html">About Us</a>
-            </div>
+            </nav>
         </div>
     </footer>
 
