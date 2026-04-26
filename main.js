@@ -16,6 +16,9 @@ const moonIcon = document.getElementById('moon-icon');
 
 // Share Elements
 const shareSection = document.getElementById('share-section');
+const shareTwitterBtn = document.getElementById('share-twitter-btn');
+const shareFacebookBtn = document.getElementById('share-facebook-btn');
+const shareKakaoBtn = document.getElementById('share-kakao-btn');
 const shareNativeBtn = document.getElementById('share-native-btn');
 const copyLinkBtn = document.getElementById('copy-link-btn');
 
@@ -52,7 +55,6 @@ function generateLottoNumbers() {
     const numbers = new Uint32Array(LOTTO_COUNT);
     const result = [];
     
-    // Use Web Crypto API for secure randomness
     while (result.length < LOTTO_COUNT) {
         window.crypto.getRandomValues(numbers);
         const num = (numbers[0] % LOTTO_MAX_NUMBER) + 1;
@@ -72,19 +74,17 @@ function displayLottoNumbers(numbers) {
         const ball = document.createElement('div');
         ball.className = 'lotto-ball';
         ball.textContent = num;
-        ball.style.animationDelay = `${index * 0.1}s`;
         
-        // Color coding based on number range
-        if (num <= 10) ball.style.backgroundColor = '#fbc400';
-        else if (num <= 20) ball.style.backgroundColor = '#69c8f2';
-        else if (num <= 30) ball.style.backgroundColor = '#ff7272';
-        else if (num <= 40) ball.style.backgroundColor = '#aaa';
-        else ball.style.backgroundColor = '#b0d840';
+        // Classic Lotto Ball Colors
+        if (num <= 10) ball.style.backgroundColor = '#fbc400';      // Yellow
+        else if (num <= 20) ball.style.backgroundColor = '#69c8f2'; // Blue
+        else if (num <= 30) ball.style.backgroundColor = '#ff7272'; // Red
+        else if (num <= 40) ball.style.backgroundColor = '#aaa';      // Gray
+        else ball.style.backgroundColor = '#b0d840';                // Green
         
         lottoContainer.appendChild(ball);
     });
 
-    // Show share section
     if (shareSection) shareSection.style.display = 'block';
 }
 
@@ -118,7 +118,6 @@ async function predict(imageElement) {
     
     if (labelContainer) {
         labelContainer.innerHTML = '';
-        // Sort by probability
         prediction.sort((a, b) => b.probability - a.probability);
         
         const topResult = prediction[0];
@@ -132,16 +131,19 @@ async function predict(imageElement) {
             barContainer.className = 'prediction-bar-container';
             
             const label = document.createElement('span');
+            label.className = 'label-name';
             label.textContent = p.className;
             
             const barOuter = document.createElement('div');
-            barOuter.className = 'bar-outer';
+            barOuter.className = 'progress-bar';
             
             const barInner = document.createElement('div');
-            barInner.className = 'bar-inner';
+            barInner.className = 'progress-fill';
             barInner.style.width = `${(p.probability * 100).toFixed(0)}%`;
+            barInner.style.backgroundColor = getBarColor(p.probability);
             
             const percent = document.createElement('span');
+            percent.className = 'label-prob';
             percent.textContent = `${(p.probability * 100).toFixed(0)}%`;
             
             barOuter.appendChild(barInner);
@@ -151,12 +153,17 @@ async function predict(imageElement) {
             labelContainer.appendChild(barContainer);
         });
 
-        // Show share section
         if (shareSection) shareSection.style.display = 'block';
     }
 }
 
-// Image Upload Handling
+function getBarColor(prob) {
+    if (prob > 0.7) return '#4CAF50';
+    if (prob > 0.4) return '#FFC107';
+    return '#FF5722';
+}
+
+// Image Upload
 const imageUpload = document.getElementById('image-upload');
 const imagePreview = document.getElementById('image-preview');
 const uploadArea = document.getElementById('upload-area');
@@ -174,7 +181,6 @@ if (imageUpload) {
                     if (label) label.style.display = 'none';
                 }
                 
-                // Show loading and predict
                 const spinner = document.getElementById('loading-spinner');
                 if (spinner) spinner.style.display = 'block';
                 
@@ -190,57 +196,72 @@ if (imageUpload) {
     });
 }
 
-// --- Sharing Logic ---
-function getShareData() {
+// --- SNS Sharing Logic ---
+function getShareContent() {
     const isLotto = !!document.getElementById('lotto-numbers-container');
-    let title = "Lucky App - Boost Your Luck!";
-    let text = "Check out this cool tool!";
     const url = window.location.href;
-
+    let text = "Check out Lucky App!";
+    
     if (isLotto) {
         const balls = document.querySelectorAll('.lotto-ball');
         if (balls.length > 0) {
             const numbers = Array.from(balls).map(b => b.textContent).join(', ');
-            title = "My Lucky Numbers!";
-            text = `I just generated my lucky lotto numbers: ${numbers}. Try your luck too!`;
+            text = `🍀 My lucky numbers are: ${numbers}. Get yours at Lucky App!`;
         }
-    } else if (document.querySelector('.result-title')) {
-        const animal = document.querySelector('.result-title h3').textContent;
-        title = "My AI Animal Face Result!";
-        text = `I just took the AI Animal Face Test and... ${animal} Find your animal twin!`;
+    } else {
+        const titleEl = document.querySelector('.result-title h3');
+        if (titleEl) {
+            text = `🐾 ${titleEl.textContent} Find your AI animal double at Lucky App!`;
+        }
     }
+    return { text, url };
+}
 
-    return { title, text, url };
+if (shareTwitterBtn) {
+    shareTwitterBtn.addEventListener('click', () => {
+        const { text, url } = getShareContent();
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    });
+}
+
+if (shareFacebookBtn) {
+    shareFacebookBtn.addEventListener('click', () => {
+        const { url } = getShareContent();
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    });
+}
+
+if (shareKakaoBtn) {
+    shareKakaoBtn.addEventListener('click', () => {
+        const { text, url } = getShareContent();
+        // Simple Kakao link sharing (web)
+        window.open(`https://story.kakao.com/share?url=${encodeURIComponent(url)}`, '_blank');
+        // Note: For deep linking to KakaoTalk app, official JS SDK is recommended.
+    });
 }
 
 if (shareNativeBtn) {
     shareNativeBtn.addEventListener('click', async () => {
-        const shareData = getShareData();
+        const { text, url } = getShareContent();
         if (navigator.share) {
             try {
-                await navigator.share(shareData);
-            } catch (err) {
-                console.log('Error sharing:', err);
-            }
+                await navigator.share({ title: 'Lucky App', text, url });
+            } catch (err) { console.log('Share failed', err); }
         } else {
-            // Fallback: Copy to clipboard
-            copyToClipboard(shareData.text + " " + shareData.url);
+            copyToClipboard(text + " " + url);
         }
     });
 }
 
 if (copyLinkBtn) {
     copyLinkBtn.addEventListener('click', () => {
-        const shareData = getShareData();
-        copyToClipboard(shareData.url);
+        copyToClipboard(window.location.href);
     });
 }
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         alert('Link copied to clipboard!');
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
     });
 }
 
